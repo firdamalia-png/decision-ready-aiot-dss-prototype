@@ -1,0 +1,123 @@
+{
+  "_note": "SET UJI - dibekukan sebelum kata kunci disusun. Jangan dipakai untuk menyetel kata kunci.",
+  "current_condition": [
+    "Bagaimana kondisi kolam saat ini?",
+    "Keadaan kolam sekarang seperti apa?",
+    "Berapa suhu, pH, dan DO terkini?",
+    "Tolong tampilkan pembacaan sensor terbaru",
+    "Kolam gurame sekarang aman atau tidak?",
+    "Status kolam sekarang apa?",
+    "Nilai DO saat ini berapa?",
+    "Apa kabar kolam nila hari ini?",
+    "What is the current pond condition?",
+    "Kondisi air kolam terkini bagaimana?"
+  ],
+  "risk_reason": [
+    "Mengapa status kolam berisiko?",
+    "Kenapa statusnya waspada?",
+    "Apa alasan kolam ini dinyatakan kritis?",
+    "Apa penyebab status risiko ini?",
+    "Kok kolamnya kritis?",
+    "Kenapa sistem memberi peringatan?",
+    "Apa dasar penetapan status saat ini?",
+    "Mengapa kolam ini dianggap berbahaya?",
+    "Why is the pond status risky?",
+    "Apa yang membuat status menjadi waspada?"
+  ],
+  "do_forecast": [
+    "Bagaimana prediksi DO untuk 60 menit ke depan?",
+    "Berapa perkiraan DO 30 menit lagi?",
+    "DO satu jam ke depan berapa?",
+    "Tampilkan hasil prediksi oksigen terlarut",
+    "Apakah DO akan turun dalam 15 menit?",
+    "Prakiraan DO 45 menit mendatang?",
+    "Bagaimana ramalan oksigen kolam nanti?",
+    "Prediksi DO jangka pendek seperti apa?",
+    "What is the DO forecast for the next hour?",
+    "Apakah DO diprediksi melewati batas operasional?"
+  ],
+  "recommended_action": [
+    "Tindakan apa yang harus dilakukan sekarang?",
+    "Apa rekomendasi untuk kolam ini?",
+    "Apa yang sebaiknya saya lakukan?",
+    "Langkah apa yang perlu diambil pengelola?",
+    "Perlu menyalakan aerator tidak?",
+    "Saran penanganan untuk kondisi ini apa?",
+    "Solusinya apa?",
+    "Apakah pemberian pakan perlu dikurangi?",
+    "What action should be taken now?",
+    "Apa yang perlu dilakukan supaya DO naik?"
+  ],
+  "limiting_parameter": [
+    "Parameter apa yang menjadi pembatas utama?",
+    "Parameter mana yang paling bermasalah?",
+    "Faktor pembatas kualitas air di kolam ini apa?",
+    "Variabel apa yang skornya paling rendah?",
+    "Parameter apa yang menyebabkan kolam berisiko?",
+    "Di antara suhu, pH, dan DO, mana yang paling membatasi?",
+    "Masalah utama kolam ada di parameter apa?",
+    "Parameter mana yang paling perlu diperhatikan?",
+    "Which parameter is limiting?",
+    "Parameter apa yang paling tidak sesuai?"
+  ],
+  "assessment_score": [
+    "Berapa skor kesesuaian kolam?",
+    "Tampilkan skor assessment",
+    "Berapa nilai suitability suhu, pH, dan DO?",
+    "Skor kolam ini berapa?",
+    "Bagaimana hasil penilaian kesesuaian kualitas air?",
+    "Skor DO kolam nilem berapa?",
+    "Nilai kesesuaian kolam secara rata-rata?",
+    "Show the pond suitability score",
+    "Berapa pond score saat ini?",
+    "Hasil suitability scoring kolam ini?"
+  ],
+  "do_stability": [
+    "Seberapa stabil DO di kolam ini?",
+    "Berapa CV DO?",
+    "Apakah DO berfluktuasi tinggi?",
+    "Bagaimana kestabilan oksigen terlarut?",
+    "DO-nya naik turun tidak?",
+    "Berapa koefisien variasi DO?",
+    "Apakah oksigen di kolam ini fluktuatif?",
+    "Tingkat variabilitas DO bagaimana?",
+    "How stable is DO in this pond?",
+    "Apakah kondisi DO konsisten atau berubah-ubah?"
+  ],
+  "excursion_duration": [
+    "Berapa lama DO berada di bawah batas operasional?",
+    "Berapa kali terjadi excursion DO?",
+    "Berapa total durasi excursion?",
+    "Durasi excursion terpanjang berapa jam?",
+    "Berapa kejadian DO rendah selama pemantauan?",
+    "Tampilkan bukti excursion",
+    "Seberapa lama penyimpangan DO terjadi?",
+    "Berapa episode DO keluar dari batas?",
+    "How long was DO below the limit?",
+    "Riwayat ekskursi DO kolam ini bagaimana?"
+  ],
+  "dss_value": [
+    "Apa nilai tambah dibanding monitoring berbasis threshold-only?",
+    "Apa kelebihan DSS ini dibanding pemantauan biasa?",
+    "Apa kontribusi sistem ini?",
+    "Bedanya sistem ini dengan alarm ambang batas apa?",
+    "Apa keunggulan Decision-Ready AIoT?",
+    "Kenapa perlu DSS, bukan cukup sensor saja?",
+    "Apa manfaat sistem pendukung keputusan ini?",
+    "Apa kebaruan sistem ini?",
+    "What is the added value of this DSS?",
+    "Apa yang membedakan DSS ini dari monitoring IoT biasa?"
+  ],
+  "condition_summary": [
+    "Berikan ringkasan kondisi kolam",
+    "Rangkum kondisi kolam ini",
+    "Tolong buat ringkasan singkat",
+    "Gambaran umum kolam secara keseluruhan bagaimana?",
+    "Ikhtisar kondisi kolam lele?",
+    "Ringkas semua informasi DSS untuk kolam ini",
+    "Rangkuman status, prediksi, dan rekomendasi",
+    "Secara keseluruhan kolam ini bagaimana?",
+    "Give me a summary of the pond",
+    "Laporan singkat kondisi kolam hari ini"
+  ]
+}

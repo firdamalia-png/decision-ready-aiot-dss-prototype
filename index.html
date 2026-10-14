@@ -1,0 +1,353 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Nursery Pond Water Quality DSS</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M10 33c8-11 20-15 33-6l8-7c2-2 5 0 4 3l-3 9 3 9c1 3-2 5-4 3l-8-7c-13 9-25 5-33-4Z' fill='%230f766e'/%3E%3Ccircle cx='24' cy='29' r='2.4' fill='%23fff'/%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="ambient ambient-one"></div>
+  <div class="ambient ambient-two"></div>
+
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand-block">
+        <div class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 64 64" role="img">
+            <path d="M10 33c8-11 20-15 33-6l8-7c2-2 5 0 4 3l-3 9 3 9c1 3-2 5-4 3l-8-7c-13 9-25 5-33-4Z" fill="currentColor" opacity=".96"/>
+            <circle cx="24" cy="29" r="2.4" fill="#07313a"/>
+            <path d="M38 26c-4 4-4 9 0 13" fill="none" stroke="#07313a" stroke-width="2.4" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div>
+          <p class="eyebrow">Fish Nursery Pond</p>
+          <h1>Water Quality Decision Support System</h1>
+        </div>
+      </div>
+      <div class="top-actions">
+        <select id="pondSelect" aria-label="Select pond"></select>
+        <a class="lang-link active" href="index.html">EN</a><a class="lang-link" href="index_id.html">ID</a><button id="settingsBtn" class="secondary-btn">Data & Model</button>
+      </div>
+    </header>
+
+    <main>
+      <div id="dashboardView" class="tab-view active">
+      <section class="simulation-toolbar" aria-label="IoT stream simulation">
+        <div class="simulation-copy">
+          <p class="muted-label">Demonstration mode</p>
+          <h3>IoT stream simulation</h3>
+          <p>Replay real historical sensor records as a virtual 15-minute IoT stream. Each step reruns assessment, LSTM forecasting, risk classification, recommendation, and NLP explanation.</p>
+        </div>
+        <div class="simulation-controls">
+          <label class="sim-speed-label">Replay speed
+            <select id="simSpeed">
+              <option value="400">0.4 s / record</option>
+              <option value="800" selected>0.8 s / record</option>
+              <option value="1500">1.5 s / record</option>
+              <option value="3000">3 s / record</option>
+            </select>
+          </label>
+          <div class="sim-button-row">
+            <button id="simStartBtn" class="primary-btn">Start replay</button>
+            <button id="simStepBtn" class="secondary-btn">Step +15 min</button>
+            <button id="simPauseBtn" class="secondary-btn">Pause</button>
+            <button id="simResetBtn" class="secondary-btn">Reset</button>
+          </div>
+          <p id="simStatus" class="small-note sim-status">Ready. Replay warm-starts with 96 real IoT records so the engineered features and 24-step LSTM window can be formed.</p>
+        </div>
+      </section>
+
+      <section class="status-dashboard">
+        <article class="hero-card status-card">
+          <div class="hero-watermark" aria-hidden="true"></div>
+          <div class="status-meta">
+            <span class="section-chip">Current condition</span>
+            <span id="sourceLabel" class="pill neutral">Historical IoT data</span>
+          </div>
+          <div class="status-main">
+            <div>
+              <h2 id="mainStatus">-</h2>
+              <p id="mainIssue" class="status-note">-</p>
+            </div>
+            <div class="score-orb">
+              <span>Pond score</span>
+              <strong id="pondScore">-</strong>
+            </div>
+          </div>
+          <div class="recommendation-box compact-recommendation">
+            <p class="muted-label">Recommended action</p>
+            <p id="mainRecommendation">-</p>
+          </div>
+        </article>
+
+        <aside class="side-summary">
+          <div class="mini-stat">
+            <span>Latest update</span>
+            <strong id="lastUpdated">-</strong>
+          </div>
+          <div class="mini-stat">
+            <span>Data records</span>
+            <strong id="recordsCount">-</strong>
+          </div>
+          <div class="mini-stat">
+            <span>DO stability</span>
+            <strong id="doCvValue">-</strong>
+          </div>
+          <div class="mini-stat">
+            <span>Model mode</span>
+            <strong id="modelModeTop">Assessment-Guided LSTM</strong>
+          </div>
+        </aside>
+      </section>
+
+      <section class="metrics-grid">
+        <article class="metric-card temperature-card">
+          <div class="metric-topline">
+            <p class="muted-label">Temperature</p>
+            <span id="tempStatus" class="pill">-</span>
+          </div>
+          <strong id="tempValue">-</strong>
+          <small>Operational range is evaluated by species threshold.</small>
+        </article>
+        <article class="metric-card ph-card">
+          <div class="metric-topline">
+            <p class="muted-label">pH</p>
+            <span id="phStatus" class="pill">-</span>
+          </div>
+          <strong id="phValue">-</strong>
+          <small>Acidity condition for current pond period.</small>
+        </article>
+        <article class="metric-card do-card emphasis">
+          <div class="metric-topline">
+            <p class="muted-label">Dissolved Oxygen</p>
+            <span id="doStatus" class="pill">-</span>
+          </div>
+          <strong id="doValue">-</strong>
+          <small>Main variable for short-term early warning.</small>
+        </article>
+      </section>
+
+      <section class="workspace-grid">
+        <article class="panel trend-panel">
+          <div class="panel-header">
+            <div>
+              <p class="muted-label">Monitoring</p>
+              <h3>Water quality trend</h3>
+            </div>
+            <div class="chart-legend">
+              <span><i class="dot temp-dot"></i>Temperature</span>
+              <span><i class="dot ph-dot"></i>pH</span>
+              <span><i class="dot do-dot"></i>DO</span>
+              <span><i class="dot limit-dot"></i>DO limit</span>
+              <span><i class="dot target-dot"></i>DO target</span>
+            </div>
+          </div>
+          <div id="chart" class="chart"></div>
+        </article>
+
+        <article class="panel assessment-panel">
+          <div class="panel-header stacked-header">
+            <div>
+              <p class="muted-label">Assessment</p>
+              <h3>Current scoring</h3>
+            </div>
+          </div>
+          <div class="assessment-list">
+            <div>
+              <span>Temperature score</span>
+              <strong id="tempScore">-</strong>
+            </div>
+            <div>
+              <span>pH score</span>
+              <strong id="phScore">-</strong>
+            </div>
+            <div>
+              <span>DO score</span>
+              <strong id="doScore">-</strong>
+            </div>
+            <div class="highlight-row">
+              <span>DO excursion</span>
+              <strong id="excursionValue">-</strong>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <section class="forecast-layout">
+        <article class="panel forecast-summary-panel">
+          <div class="panel-header stacked-header">
+            <div>
+              <p class="muted-label">Prediction</p>
+              <h3>Assessment-Guided DO forecast</h3>
+            </div>
+            <span id="modelBadge" class="model-badge">Assessment-Guided LSTM</span>
+          </div>
+
+          <div class="assessment-list forecast-summary-list">
+            <div>
+              <span>Current DO</span>
+              <strong><span id="forecastCurrentDo">-</span> <small>mg/L</small></strong>
+            </div>
+            <div>
+              <span>Predicted minimum</span>
+              <strong><span id="forecastMinDo">-</span> <small>mg/L</small></strong>
+            </div>
+            <div>
+              <span>Forecast risk</span>
+              <strong id="forecastRisk" class="risk-word">-</strong>
+              <small id="forecastTimeRisk">-</small>
+            </div>
+            <div>
+              <span>15 min forecast</span>
+              <strong><span id="forecast15">-</span> <small>mg/L</small></strong>
+              <small id="forecast15Status" class="forecast-status neutral">-</small>
+            </div>
+            <div>
+              <span>30 min forecast</span>
+              <strong><span id="forecast30">-</span> <small>mg/L</small></strong>
+              <small id="forecast30Status" class="forecast-status neutral">-</small>
+            </div>
+            <div>
+              <span>45 min forecast</span>
+              <strong><span id="forecast45">-</span> <small>mg/L</small></strong>
+              <small id="forecast45Status" class="forecast-status neutral">-</small>
+            </div>
+            <div class="highlight-row">
+              <span>60 min forecast</span>
+              <strong><span id="forecast60">-</span> <small>mg/L</small></strong>
+              <small id="forecast60Status" class="forecast-status neutral">-</small>
+            </div>
+          </div>
+        </article>
+
+        <article class="panel forecast-graph-panel">
+          <div class="panel-header">
+            <div>
+              <p class="muted-label">DO trend</p>
+              <h3>Actual and predicted dissolved oxygen</h3>
+            </div>
+            <div class="chart-legend forecast-legend">
+              <span><i class="dot do-dot"></i>Actual DO</span>
+              <span><i class="dot predicted-dot"></i>Predicted DO</span>
+              <span><i class="dot limit-dot"></i>Operational limit</span>
+              <span><i class="dot target-dot"></i>Optimal target</span>
+            </div>
+          </div>
+          <div id="forecastChart" class="forecast-chart integrated-forecast-chart"></div>
+        </article>
+      </section>
+
+      <section class="assistant-row">
+        <article class="panel assistant-panel assistant-panel-wide">
+          <div class="panel-header assistant-header">
+            <div>
+              <p class="muted-label">Decision Support Assistant</p>
+              <h3>NLP Chatbot</h3>
+            </div>
+            <div class="assistant-actions">
+              <button id="assistantClearBtn" class="assistant-clear" type="button">Clear</button>
+            </div>
+          </div>
+
+          <div class="assistant-box">
+            <div id="assistantMessages" class="assistant-messages" aria-live="polite"></div>
+
+            <div class="quick-questions" aria-label="Quick questions">
+              <button type="button" data-question="Give me a summary of the pond">Summary</button>
+              <button type="button" data-question="What is the current pond condition?">Current condition</button>
+              <button type="button" data-question="Why is the pond status risky?">Risk reason</button>
+              <button type="button" data-question="What is the DO forecast for the next 60 minutes?">DO forecast</button>
+              <button type="button" data-question="What action should be taken now?">Recommended action</button>
+              <button type="button" data-question="Which parameter is the main limiting factor?">Main limiting parameter</button>
+              <button type="button" data-question="What is the value added beyond threshold-only monitoring?">DSS value</button>
+            </div>
+            <div class="quick-questions quick-questions-knowledge" aria-label="Knowledge and analysis questions">
+              <button type="button" data-question="Why does DO drop at night?">Why DO drops at night</button>
+              <button type="button" data-question="What time is DO lowest?">Lowest-DO hour</button>
+              <button type="button" data-question="Compare the ponds">Compare ponds</button>
+              <button type="button" data-question="What does warning status mean?">Status meaning</button>
+              <button type="button" data-question="How to raise DO in the pond?">How to raise DO</button>
+              <button type="button" data-question="What are the limitations?">System limitations</button>
+            </div>
+
+            <div class="assistant-input-row">
+              <input id="assistantInput" type="text" placeholder="Ask about pond condition, DO forecast, risk reason, or recommended action..." />
+              <button id="assistantAskBtn" class="primary-btn" type="button">Send</button>
+            </div>
+          </div>
+        </article>
+      </section>
+      </div>
+    </main>
+  </div>
+
+  <aside id="settingsPanel" class="settings-panel" aria-hidden="true">
+    <div class="settings-card">
+      <div class="settings-header">
+        <div>
+          <p class="muted-label">Configuration</p>
+          <h3>Data & Model</h3>
+        </div>
+        <button id="closeSettingsBtn" class="icon-btn" aria-label="Close">×</button>
+      </div>
+
+      <div class="setting-block">
+        <h4>Data source</h4>
+        <label class="file-drop">
+          <input id="csvInput" type="file" accept=".csv,text/csv" />
+          <span>Upload CSV</span>
+        </label>
+        <button id="resetDataBtn" class="secondary-btn full-btn">Reset historical dataset</button>
+      </div>
+
+      <div class="setting-block">
+        <h4>Live IoT data</h4>
+        <label>Live/Firebase REST URL</label>
+        <input id="firebaseUrl" type="text" value="https://klasifikasi-ikan-default-rtdb.asia-southeast1.firebasedatabase.app/readings/latest.json" placeholder="https://project-id-default-rtdb.firebaseio.com/readings/latest.json" />
+        <div class="button-row">
+          <button id="startLiveBtn" class="primary-btn">Connect</button>
+          <button id="stopLiveBtn" class="secondary-btn">Stop</button>
+        </div>
+        <p id="liveStatus" class="small-note">Disconnected</p>
+      </div>
+
+      <div class="setting-block">
+        <h4>Prediction model</h4>
+        <label>Assessment-Guided LSTM API endpoint</label>
+        <input id="lstmUrl" type="text" value="http://127.0.0.1:8000/predict" placeholder="http://127.0.0.1:8000/predict" />
+        <button id="applyModelBtn" class="primary-btn full-btn">Apply model endpoint</button>
+        <p class="small-note">Required for DO prediction. The endpoint should use the Assessment-Guided Multi-Horizon LSTM model and show prediction only when active.</p>
+      </div>
+
+      <div class="setting-block">
+        <h4>Manual what-if simulation</h4>
+        <div class="manual-form">
+          <label class="field-group">Temperature (°C)
+            <input id="manualTemp" type="number" step="0.01" placeholder="contoh: 28.10" />
+          </label>
+          <label class="field-group">pH
+            <input id="manualPh" type="number" step="0.01" placeholder="contoh: 7.42" />
+          </label>
+          <label class="field-group">Dissolved oxygen (mg/L)
+            <input id="manualDo" type="number" step="0.01" placeholder="contoh: 4.35" />
+          </label>
+        </div>
+        <button id="addManualBtn" class="secondary-btn full-btn">Apply simulated reading</button>
+        <p class="small-note">The entered value is appended as the next 15-minute reading. Previous context remains real IoT historical/replay data. This mode demonstrates DSS behavior and is not a substitute for field validation.</p>
+      </div>
+
+      <div class="setting-block no-border">
+        <button id="downloadBtn" class="secondary-btn full-btn">Download current dataset</button>
+      </div>
+    </div>
+  </aside>
+
+  <script>window.APP_LANG="en";</script>
+  <script src="historical-data.js"></script>
+  <script src="nlp.js"></script>
+  <script src="nlp_answers.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

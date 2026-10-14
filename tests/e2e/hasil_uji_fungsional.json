@@ -1,0 +1,314 @@
+{
+ "lulus": 16,
+ "total": 16,
+ "hasil": [
+  {
+   "no": 1,
+   "komponen": "Input data",
+   "skenario": "Memuat data IoT historis bawaan (iot_data.csv)",
+   "harapan": "4 kolam terbaca; 1.344 data per kolam",
+   "hasil": "kolam: ['Catfish', 'Gourami', 'Nilem', 'Tilapia']; data kolam aktif: 1.344",
+   "status": "LULUS",
+   "bukti": "e2e/01_awal.png"
+  },
+  {
+   "no": 2,
+   "komponen": "Assessment temporal",
+   "skenario": "Kolam Gurame, seluruh 14 hari",
+   "harapan": "Skor 2,849/3,000/2,202; skor kolam 2,684; 82 excursion, 78,25 jam (Tabel 4.6-4.7)",
+   "hasil": "skor {'tempScore': 2.849, 'phScore': 3.0, 'doScore': 2.202, 'pondScore': 2.684}; excursion '82 kejadian · total 78.3 jam · maks 11.0 jam'; CV DO 19.6%",
+   "status": "LULUS",
+   "bukti": "e2e/02_assessment_gurame.png"
+  },
+  {
+   "no": 3,
+   "komponen": "Prediksi DO",
+   "skenario": "Terapkan endpoint LSTM pada kolam Gurame",
+   "harapan": "Empat nilai prediksi (15/30/45/60 menit) tampil dari model Assessment-Guided LSTM",
+   "hasil": "prediksi {15: 3.28, 30: 3.23, 45: 3.39, 60: 3.31}; label model 'Assessment-Guided LSTM'",
+   "status": "LULUS",
+   "bukti": "e2e/03_prediksi.png"
+  },
+  {
+   "no": 4,
+   "komponen": "Prediksi DO",
+   "skenario": "Bandingkan prediksi di layar dengan panggilan langsung ke backend",
+   "harapan": "Nilai sama (selisih < 0,01 mg/L karena pembulatan tampilan)",
+   "hasil": "layar {15: 3.28, 30: 3.23, 45: 3.39, 60: 3.31}; backend {15: 3.28, 30: 3.228, 45: 3.388, 60: 3.31}; period_start 15/01/26 00.00",
+   "status": "LULUS",
+   "bukti": ""
+  },
+  {
+   "no": 5,
+   "komponen": "Logika keputusan",
+   "skenario": "Status kolam Gurame pada data terakhir",
+   "harapan": "Status sesuai Tabel 3.11 (diuji lengkap di tests/test_rules.js: 72 skenario + 20.000 kasus acak)",
+   "hasil": "status 'Kritis' (acuan: Kritis)",
+   "status": "LULUS",
+   "bukti": ""
+  },
+  {
+   "no": 6,
+   "komponen": "Rekomendasi operasional",
+   "skenario": "Rekomendasi untuk status yang tampil",
+   "harapan": "Teks rekomendasi tampil dan sesuai status",
+   "hasil": "'Tingkatkan aerasi, kurangi pemberian pakan sementara, amati variasi temperatur pada interval berikutnya, tinjau faktor manajemen kolam yang ...'",
+   "status": "LULUS",
+   "bukti": ""
+  },
+  {
+   "no": 7,
+   "komponen": "Dashboard - kartu parameter",
+   "skenario": "Label status tiap parameter pada data terakhir Gurame",
+   "harapan": "Label mengikuti Tabel 3.4 (Optimal / Dapat diterima / Tidak sesuai)",
+   "hasil": "{'temp': 'Optimal', 'ph': 'Optimal', 'do': 'Tidak sesuai'}",
+   "status": "LULUS",
+   "bukti": ""
+  },
+  {
+   "no": 8,
+   "komponen": "Dashboard - grafik",
+   "skenario": "Grafik tren kualitas air dan grafik prediksi DO",
+   "harapan": "Kedua grafik ter-render",
+   "hasil": "jumlah elemen grafik [60, 100]",
+   "status": "LULUS",
+   "bukti": "e2e/08_dashboard_penuh.png"
+  },
+  {
+   "no": 9,
+   "komponen": "NLP explanation",
+   "skenario": "10 pertanyaan, satu per intent, diketik di kotak tanya",
+   "harapan": "Setiap pertanyaan dijawab dengan intent yang benar dan memuat nilai dari DSS",
+   "hasil": "10/10 intent benar",
+   "status": "LULUS",
+   "bukti": "e2e/09_nlp.png"
+  },
+  {
+   "no": "9b",
+   "komponen": "NLP pengetahuan & analisis",
+   "skenario": "17 pertanyaan di luar pembacaan angka sistem (satu per intent tambahan)",
+   "harapan": "Setiap pertanyaan dikenali dan dijawab lengkap (tanpa nilai kosong/NaN)",
+   "hasil": "17/17 dijawab benar",
+   "status": "LULUS",
+   "bukti": "e2e/09b_nlp_pengetahuan.png"
+  },
+  {
+   "no": 10,
+   "komponen": "Simulasi replay IoT",
+   "skenario": "Reset replay, lalu dua kali 'Langkah +15 menit'",
+   "harapan": "Jumlah data bertambah 1 per langkah, waktu maju 15 menit, prediksi diperbarui",
+   "hasil": "data 97 -> 98; waktu 16 Jan, 00.00 -> 16 Jan, 00.15; prediksi 15' 3.56",
+   "status": "LULUS",
+   "bukti": "e2e/10_replay.png"
+  },
+  {
+   "no": 11,
+   "komponen": "Input manual (what-if)",
+   "skenario": "Tambah pembacaan DO 3,2 mg/L pada kolam Gurame (DO Ops = 4,0)",
+   "harapan": "Status menjadi Kritis karena DO < batas operasional",
+   "hasil": "status 'Kritis'",
+   "status": "LULUS",
+   "bukti": "e2e/11_manual_kritis.png"
+  },
+  {
+   "no": 12,
+   "komponen": "Penanganan galat",
+   "skenario": "Endpoint model tidak dapat dihubungi",
+   "harapan": "Prediksi dikosongkan dan label model menyatakan LSTM belum tersedia",
+   "hasil": "prediksi 60' '-'; label 'LSTM belum tersedia'",
+   "status": "LULUS",
+   "bukti": "e2e/12_backend_mati.png"
+  },
+  {
+   "no": 13,
+   "komponen": "Antarmuka bahasa Inggris",
+   "skenario": "Membuka index.html",
+   "harapan": "Status tampil dalam bahasa Inggris",
+   "hasil": "status 'Critical'",
+   "status": "LULUS",
+   "bukti": "e2e/13_english.png"
+  },
+  {
+   "no": 15,
+   "komponen": "Dibuka dengan klik dua kali (file://)",
+   "skenario": "Membuka index_id.html langsung dari folder, lalu terapkan endpoint",
+   "harapan": "Halaman tampil dan prediksi LSTM muncul",
+   "hasil": "status 'Kritis', prediksi 60' 3.31",
+   "status": "LULUS",
+   "bukti": "e2e/15_file_mode.png"
+  },
+  {
+   "no": 14,
+   "komponen": "Stabilitas halaman",
+   "skenario": "Seluruh skenario di atas",
+   "harapan": "Tidak ada galat JavaScript",
+   "hasil": "0 galat: []",
+   "status": "LULUS",
+   "bukti": ""
+  }
+ ],
+ "nlp_detail": [
+  {
+   "pertanyaan": "Bagaimana kondisi kolam saat ini?",
+   "intent": "current_condition",
+   "terdeteksi_benar": true,
+   "jawaban": "Saya menafsirkan pertanyaan Anda sebagai: Kondisi Saat Ini. Kondisi saat ini untuk Gourami: Temperatur 26.87 °C, pH 7.43, dan DO 3.23 mg/L. Status sistem adalah"
+  },
+  {
+   "pertanyaan": "Kenapa statusnya kritis?",
+   "intent": "risk_reason",
+   "terdeteksi_benar": true,
+   "jawaban": "Saya menafsirkan pertanyaan Anda sebagai: Alasan Risiko. Status saat ini adalah Kritis. Alasan utamanya adalah: DO berada di bawah atau diprediksi melewati bata"
+  },
+  {
+   "pertanyaan": "Berapa prediksi DO 60 menit ke depan?",
+   "intent": "do_forecast",
+   "terdeteksi_benar": true,
+   "jawaban": "Saya menafsirkan pertanyaan Anda sebagai: Prediksi DO. Untuk Gourami, prediksi DO adalah 3.28 mg/L dalam 15 menit, 3.23 mg/L dalam 30 menit, 3.39 mg/L dalam 45 "
+  },
+  {
+   "pertanyaan": "Tindakan apa yang harus dilakukan?",
+   "intent": "recommended_action",
+   "terdeteksi_benar": true,
+   "jawaban": "Saya menafsirkan pertanyaan Anda sebagai: Rekomendasi Tindakan. Rekomendasi tindakan: Tingkatkan aerasi, kurangi pemberian pakan sementara, amati variasi temper"
+  },
+  {
+   "pertanyaan": "Parameter mana yang paling bermasalah?",
+   "intent": "limiting_parameter",
+   "terdeteksi_benar": true,
+   "jawaban": "Saya menafsirkan pertanyaan Anda sebagai: Parameter Pembatas. Parameter dengan skor kesesuaian rata-rata terendah adalah DO (2.202). Skor lengkap: temperatur 2."
+  },
+  {
+   "pertanyaan": "Berapa skor kesesuaian kolam?",
+   "intent": "assessment_score",
+   "terdeteksi_benar": true,
+   "jawaban": "Saya menafsirkan pertanyaan Anda sebagai: Skor Kesesuaian. Skor kesesuaian tingkat kolam untuk Gourami saat ini adalah 2.684. Skor komponennya adalah temperatur"
+  },
+  {
+   "pertanyaan": "Seberapa stabil DO?",
+   "intent": "do_stability",
+   "terdeteksi_benar": true,
+   "jawaban": "Saya menafsirkan pertanyaan Anda sebagai: Stabilitas DO. Indikator stabilitas DO direpresentasikan oleh koefisien variasi. Untuk Gourami, CV DO adalah 19.6% (di"
+  },
+  {
+   "pertanyaan": "Berapa lama DO di bawah batas?",
+   "intent": "excursion_duration",
+   "terdeteksi_benar": true,
+   "jawaban": "Saya menafsirkan pertanyaan Anda sebagai: Durasi Excursion. Analisis excursion DO menunjukkan 82 kejadian, total durasi 78.3 jam, dan durasi maksimum 11.0 jam. "
+  },
+  {
+   "pertanyaan": "Apa nilai tambah DSS dibanding monitoring biasa?",
+   "intent": "dss_value",
+   "terdeteksi_benar": true,
+   "jawaban": "Saya menafsirkan pertanyaan Anda sebagai: Nilai Tambah DSS. Nilai tambah di luar monitoring threshold-only adalah integrasi empat lapisan: skoring kesesuaian ti"
+  },
+  {
+   "pertanyaan": "Berikan ringkasan kondisi kolam",
+   "intent": "condition_summary",
+   "terdeteksi_benar": true,
+   "jawaban": "Saya menafsirkan pertanyaan Anda sebagai: Ringkasan Kondisi. Gourami: status Kritis. Temperatur 26.87 °C, pH 7.43, dan DO 3.23 mg/L. Skor kolam 2.684; excursion"
+  },
+  {
+   "pertanyaan": "Apa itu DO?",
+   "intent": "know_do",
+   "terdeteksi_benar": true,
+   "jawaban": "Saya menafsirkan pertanyaan Anda sebagai: Pengetahuan: Oksigen Terlarut. Oksigen terlarut (dissolved oxygen, DO) adalah jumlah oksigen yang larut dalam air, dinyatakan dalam mg/L. Ikan dan benih memakai oksigen ini untuk"
+  },
+  {
+   "pertanyaan": "Kenapa DO turun di malam hari?",
+   "intent": "know_diurnal",
+   "terdeteksi_benar": true,
+   "jawaban": "Saya menafsirkan pertanyaan Anda sebagai: Pengetahuan: Pola Harian DO. Pada siang hari fitoplankton berfotosintesis dan menghasilkan oksigen sehingga DO naik; pada malam hari fotosintesis berhenti sementara respirasi ika"
+  },
+  {
+   "pertanyaan": "Apa hubungan suhu dengan DO?",
+   "intent": "know_temp_do",
+   "terdeteksi_benar": true,
+   "jawaban": "Saya menafsirkan pertanyaan Anda sebagai: Pengetahuan: Suhu dan DO. Semakin tinggi suhu air, semakin sedikit oksigen yang dapat larut. Pada air tawar di permukaan laut, kadar oksigen jenuh sekitar 8,3 mg/L pada 25 °C dan"
+  },
+  {
+   "pertanyaan": "Apa pengaruh pH terhadap ikan?",
+   "intent": "know_ph",
+   "terdeteksi_benar": true,
+   "jawaban": "Saya menafsirkan pertanyaan Anda sebagai: Pengetahuan: pH. pH menunjukkan tingkat keasaman air. pH kolam berubah harian: naik pada siang hari saat fotosintesis menyerap CO₂ dan turun pada malam hari. pH di luar rentang y"
+  },
+  {
+   "pertanyaan": "Berapa batas DO untuk nila?",
+   "intent": "know_ranges",
+   "terdeteksi_benar": true,
+   "jawaban": "Saya menafsirkan pertanyaan Anda sebagai: Rentang Acuan Spesies. Rentang acuan yang digunakan sistem (Tabel 2.1, berdasarkan SNI dan literatur) — Nila: suhu optimal 25–30 °C (operasional 23–32 °C), pH optimal 6.5–8.5 (op"
+  },
+  {
+   "pertanyaan": "Apa arti status waspada?",
+   "intent": "know_status",
+   "terdeteksi_benar": true,
+   "jawaban": "Saya menafsirkan pertanyaan Anda sebagai: Arti Status dan Aturan Keputusan. Status ditentukan dengan aturan berjenjang (Tabel 3.11). KRITIS bila DO saat ini atau salah satu prediksi 15–60 menit di bawah batas operasional"
+  },
+  {
+   "pertanyaan": "Seberapa akurat prediksi model?",
+   "intent": "know_model",
+   "terdeteksi_benar": true,
+   "jawaban": "Saya menafsirkan pertanyaan Anda sebagai: Cara Kerja Prediksi. Prediksi dibuat oleh model Assessment-Guided LSTM (Long Short-Term Memory). Model membaca 24 langkah terakhir (6 jam) yang berisi 122 fitur: nilai suhu, pH, "
+  },
+  {
+   "pertanyaan": "Apa itu excursion?",
+   "intent": "know_terms",
+   "terdeteksi_benar": true,
+   "jawaban": "Saya menafsirkan pertanyaan Anda sebagai: Istilah Assessment. Istilah assessment pada sistem ini: (1) Skor kesesuaian (suitability) — setiap pembacaan diberi skor 3 bila berada di rentang optimal, 2 bila hanya dalam rent"
+  },
+  {
+   "pertanyaan": "Bagaimana cara menaikkan DO?",
+   "intent": "know_raise_do",
+   "terdeteksi_benar": true,
+   "jawaban": "Saya menafsirkan pertanyaan Anda sebagai: Cara Menaikkan DO. Upaya umum untuk menjaga atau menaikkan DO: (1) nyalakan atau tambah aerasi (kincir, blower, aerator), terutama malam hingga pagi; (2) kurangi atau hentikan se"
+  },
+  {
+   "pertanyaan": "Aerator mati, apa yang harus dilakukan?",
+   "intent": "know_emergency",
+   "terdeteksi_benar": true,
+   "jawaban": "Saya menafsirkan pertanyaan Anda sebagai: Penanganan Darurat. Ikan yang megap-megap di permukaan atau berkumpul di dekat aliran air adalah tanda umum kekurangan oksigen. Langkah darurat yang umum dilakukan: (1) segera ny"
+  },
+  {
+   "pertanyaan": "Bagaimana kalibrasi sensor DO?",
+   "intent": "know_sensor",
+   "terdeteksi_benar": true,
+   "jawaban": "Saya menafsirkan pertanyaan Anda sebagai: Pemeriksaan Sensor. Pemeriksaan sensor yang dianjurkan: kalibrasi sensor pH dengan larutan buffer (misalnya pH 4 dan 7) dan sensor DO dengan air jenuh udara/air referensi sesuai "
+  },
+  {
+   "pertanyaan": "Apa keterbatasan sistem ini?",
+   "intent": "know_limits",
+   "terdeteksi_benar": true,
+   "jawaban": "Saya menafsirkan pertanyaan Anda sebagai: Batasan Sistem. Batasan sistem: (1) model dilatih dari data 14 hari per kolam pada empat kolam di BBI Ciganjur, sehingga kinerjanya pada kolam, musim, atau lokasi lain belum diuj"
+  },
+  {
+   "pertanyaan": "Jam berapa DO paling rendah?",
+   "intent": "ana_lowest_time",
+   "terdeteksi_benar": true,
+   "jawaban": "Saya menafsirkan pertanyaan Anda sebagai: Analisis: Jam DO Terendah. Berdasarkan 1.344 data Gurame (14 hari), rata-rata DO terendah terjadi sekitar pukul 02.00–02.59 (3.55 mg/L) dan tertinggi sekitar pukul 13.00 (5.90 mg"
+  },
+  {
+   "pertanyaan": "Apakah DO sedang turun?",
+   "intent": "ana_trend",
+   "terdeteksi_benar": true,
+   "jawaban": "Saya menafsirkan pertanyaan Anda sebagai: Analisis: Tren DO. Dalam 2 jam terakhir (9 pembacaan), DO menurun dengan laju sekitar -0.36 mg/L per jam (dari 3.85 ke 3.23 mg/L). Prediksi 60 menit ke depan: 3.31 mg/L dibanding"
+  },
+  {
+   "pertanyaan": "Bandingkan semua kolam",
+   "intent": "ana_compare",
+   "terdeteksi_benar": true,
+   "jawaban": "Saya menafsirkan pertanyaan Anda sebagai: Analisis: Perbandingan Kolam. Perbandingan kolam (diurutkan dari total durasi excursion terlama): Gurame: skor 2.684, excursion 82 kejadian (78.3 jam), CV DO 19.6%; Nila: skor 2."
+  },
+  {
+   "pertanyaan": "Berapa DO terendah?",
+   "intent": "ana_minmax",
+   "terdeteksi_benar": true,
+   "jawaban": "Saya menafsirkan pertanyaan Anda sebagai: Analisis: DO Minimum dan Maksimum. Dalam 24 jam terakhir, DO terendah 3.15 mg/L (28 Jan, 23.30) dan tertinggi 6.24 mg/L (28 Jan, 15.00). Selama seluruh riwayat yang dimuat, DO te"
+  },
+  {
+   "pertanyaan": "Kapan terakhir DO di bawah batas?",
+   "intent": "ana_last_excursion",
+   "terdeteksi_benar": true,
+   "jawaban": "Saya menafsirkan pertanyaan Anda sebagai: Analisis: Excursion Terakhir. Saat ini DO masih di bawah batas operasional 4 mg/L. Excursion yang sedang berlangsung dimulai 28 Jan, 23.15 dan sudah berjalan sekitar 0.75 jam."
+  }
+ ]
+}

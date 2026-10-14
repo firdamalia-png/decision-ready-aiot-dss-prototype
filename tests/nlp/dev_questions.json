@@ -1,0 +1,13 @@
+{
+  "_note": "SET PENGEMBANGAN - dipakai untuk menyusun dan menyetel kata kunci.",
+  "current_condition": ["Kondisi kolam sekarang?", "Bagaimana keadaan air kolam saat ini", "Tampilkan nilai sensor sekarang", "Berapa DO sekarang", "Suhu air saat ini berapa", "pH terkini berapa", "Status terkini kolam", "Apakah kolam aman sekarang", "Current condition", "How is the pond now"],
+  "risk_reason": ["Alasan risiko", "Kenapa kritis", "Mengapa waspada", "Apa sebabnya status ini", "Kenapa ada peringatan", "Mengapa kolam berbahaya", "Why is it critical", "Apa penyebab kondisi kritis", "Kok statusnya bahaya", "Dasar keputusan status ini apa"],
+  "do_forecast": ["Prediksi DO", "Prediksi oksigen 1 jam ke depan", "Perkiraan DO nanti", "DO 15 menit lagi berapa", "Ramalan DO", "Apakah DO akan naik", "DO forecast", "Predicted DO in 30 minutes", "Hasil prediksi LSTM", "DO ke depan bagaimana"],
+  "recommended_action": ["Rekomendasi tindakan", "Apa yang harus saya kerjakan", "Sebaiknya bagaimana", "Perlu aerasi?", "Saran untuk pengelola", "Langkah penanganan", "Recommended action", "What should I do", "Apakah perlu ganti air", "Tindakan pencegahan apa"],
+  "limiting_parameter": ["Parameter pembatas utama", "Faktor pembatas", "Parameter yang bermasalah", "Variabel paling lemah", "Mana parameter terburuk", "Limiting parameter", "Parameter apa yang paling berpengaruh pada risiko", "Parameter dengan skor terendah", "Masalah utamanya parameter apa", "Which parameter is the main problem"],
+  "assessment_score": ["Skor kesesuaian", "Nilai skor kolam", "Suitability score", "Skor suhu berapa", "Skor pH berapa", "Penilaian kesesuaian air", "Pond score", "Skor assessment kolam gurame", "Berapa skor rata-rata", "Assessment score"],
+  "do_stability": ["Stabilitas DO", "CV oksigen", "Fluktuasi DO", "Apakah DO stabil", "Kestabilan kolam", "Variasi DO", "DO stability", "Seberapa besar fluktuasinya", "Oksigen berubah-ubah?", "Koefisien variasi"],
+  "excursion_duration": ["Durasi excursion", "Berapa lama DO rendah", "Jumlah kejadian excursion", "Excursion DO", "Lama penyimpangan maksimum", "Berapa kali DO di bawah batas", "Excursion duration", "Total waktu DO rendah", "Episode DO rendah", "Riwayat penyimpangan DO"],
+  "dss_value": ["Nilai DSS", "Nilai tambah sistem", "Kontribusi penelitian", "Keunggulan sistem", "Beda dengan threshold", "Manfaat DSS", "Added value", "Kelebihan dibanding monitoring biasa", "Apa novelty-nya", "Kenapa tidak cukup alarm ambang batas"],
+  "condition_summary": ["Ringkasan", "Ringkasan kondisi", "Rangkuman kolam", "Summary", "Ringkas saja", "Overview kolam", "Gambaran keseluruhan", "Ikhtisar", "Kesimpulan kondisi kolam", "Laporan ringkas"]
+}

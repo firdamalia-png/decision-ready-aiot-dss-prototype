@@ -1,0 +1,20 @@
+{
+  "_note": "Set uji intent pengetahuan & analisis. Ditulis pengembang SETELAH pola disusun -> hanya uji regresi, bukan klaim akurasi.",
+  "know_do": ["Apa itu DO?", "Apa yang dimaksud oksigen terlarut?", "Kenapa oksigen penting bagi benih ikan?", "Dari mana sumber oksigen di kolam?", "Jelaskan pengertian dissolved oxygen"],
+  "know_diurnal": ["Kenapa DO turun di malam hari?", "Mengapa oksigen rendah saat subuh?", "Kok DO naik waktu siang?", "Bagaimana pola harian DO?", "Apa peran fotosintesis terhadap oksigen?"],
+  "know_temp_do": ["Apa hubungan suhu dengan DO?", "Apakah suhu mempengaruhi oksigen?", "Kenapa air panas oksigennya lebih sedikit?", "Bagaimana pengaruh temperatur terhadap kelarutan oksigen?", "Apa kaitan suhu dan DO?"],
+  "know_ph": ["Apa itu pH?", "Apa pengaruh pH terhadap ikan?", "Bahaya pH terlalu tinggi apa?", "Apa hubungan pH dengan amonia?", "Jelaskan pentingnya pH"],
+  "know_ranges": ["Berapa batas DO untuk nila?", "Rentang suhu ideal untuk lele berapa?", "Standar pH untuk gurame?", "Kisaran DO normal untuk nilem?", "Apa acuan SNI yang dipakai?"],
+  "know_status": ["Apa arti status waspada?", "Apa maksud status kritis?", "Bagaimana cara status ditentukan?", "Jelaskan aturan keputusan sistem", "Apa artinya aman?"],
+  "know_model": ["Bagaimana cara kerja prediksi DO?", "Seberapa akurat prediksi model?", "Apa itu LSTM?", "Apakah prediksi bisa dipercaya?", "Berapa error model prediksi?"],
+  "know_terms": ["Apa itu excursion?", "Apa yang dimaksud skor kesesuaian?", "Apa arti CV?", "Bagaimana skor dihitung?", "Jelaskan maksud suitability"],
+  "know_raise_do": ["Bagaimana cara menaikkan DO?", "Tips meningkatkan oksigen di kolam?", "Gimana cara naikin oksigen?", "Bagaimana mencegah DO rendah?", "Upaya menjaga oksigen tetap tinggi?"],
+  "know_emergency": ["Ikan megap-megap di permukaan, harus bagaimana?", "Aerator mati, apa yang harus dilakukan?", "Listrik padam, pompa tidak jalan", "Banyak ikan mati mendadak", "Apa langkah darurat kalau oksigen habis?"],
+  "know_sensor": ["Bagaimana kalibrasi sensor DO?", "Sensor pH rusak tidak ya?", "Cara memastikan sensor akurat?", "Pembacaan sensor aneh, cek apa?", "Kapan sensor perlu dikalibrasi?"],
+  "know_limits": ["Apa keterbatasan sistem ini?", "Apakah sistem bisa dipercaya sepenuhnya?", "Apa kelemahan DSS ini?", "Apakah sistem ini menggantikan petugas?", "What are the limitations?"],
+  "ana_lowest_time": ["Jam berapa DO paling rendah?", "Kapan oksigen paling tinggi?", "Pukul berapa DO terendah biasanya?", "Jam rawan oksigen kapan?", "What time is DO lowest?"],
+  "ana_trend": ["Apakah DO sedang turun?", "DO lagi naik atau turun?", "Bagaimana tren DO?", "Kecenderungan DO sekarang?", "Is DO trending down?"],
+  "ana_compare": ["Bandingkan semua kolam", "Kolam mana yang paling berisiko?", "Perbandingan antar kolam", "Kolam mana paling aman?", "Compare the ponds"],
+  "ana_minmax": ["Berapa DO terendah?", "DO tertinggi berapa?", "DO minimum dan maksimum?", "Oksigen paling rendah berapa?", "Highest DO value?"],
+  "ana_last_excursion": ["Kapan terakhir DO di bawah batas?", "Kapan terakhir status kritis?", "Sejak kapan DO rendah?", "Kapan terakhir excursion?", "When was the last excursion?"]
+}

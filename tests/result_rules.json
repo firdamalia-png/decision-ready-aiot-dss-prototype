@@ -1,0 +1,631 @@
+{
+ "scenarios": [
+  {
+   "pond": "Catfish",
+   "name": "S01 semua optimal, prediksi >= Opt",
+   "expected": "Aman",
+   "oracle": "Aman",
+   "app": "Aman",
+   "pass": true
+  },
+  {
+   "pond": "Catfish",
+   "name": "S02 prediksi minimum di antara Ops dan Opt",
+   "expected": "Waspada",
+   "oracle": "Waspada",
+   "app": "Waspada",
+   "pass": true
+  },
+  {
+   "pond": "Catfish",
+   "name": "S03 DO aktual di antara Ops dan Opt",
+   "expected": "Waspada",
+   "oracle": "Waspada",
+   "app": "Waspada",
+   "pass": true
+  },
+  {
+   "pond": "Catfish",
+   "name": "S04 prediksi minimum < Ops",
+   "expected": "Kritis",
+   "oracle": "Kritis",
+   "app": "Kritis",
+   "pass": true
+  },
+  {
+   "pond": "Catfish",
+   "name": "S05 DO aktual < Ops",
+   "expected": "Kritis",
+   "oracle": "Kritis",
+   "app": "Kritis",
+   "pass": true
+  },
+  {
+   "pond": "Catfish",
+   "name": "S06 riwayat excursion DO, kondisi kini optimal",
+   "expected": "Waspada",
+   "oracle": "Waspada",
+   "app": "Waspada",
+   "pass": true
+  },
+  {
+   "pond": "Catfish",
+   "name": "S07 suhu kini Acceptable (skor 2)",
+   "expected": "Waspada",
+   "oracle": "Waspada",
+   "app": "Waspada",
+   "pass": true
+  },
+  {
+   "pond": "Catfish",
+   "name": "S08 suhu kini Unsuitable (skor 1)",
+   "expected": "Kritis",
+   "oracle": "Kritis",
+   "app": "Kritis",
+   "pass": true
+  },
+  {
+   "pond": "Catfish",
+   "name": "S09 pH kini Acceptable (skor 2)",
+   "expected": "Waspada",
+   "oracle": "Waspada",
+   "app": "Waspada",
+   "pass": true
+  },
+  {
+   "pond": "Catfish",
+   "name": "S10 pH kini Unsuitable (skor 1)",
+   "expected": "Kritis",
+   "oracle": "Kritis",
+   "app": "Kritis",
+   "pass": true
+  },
+  {
+   "pond": "Catfish",
+   "name": "S11 rata-rata skor suhu < 2,85, kini optimal",
+   "expected": "Waspada",
+   "oracle": "Waspada",
+   "app": "Waspada",
+   "pass": true
+  },
+  {
+   "pond": "Catfish",
+   "name": "S12 rata-rata skor pH < 2,85, kini optimal",
+   "expected": "Waspada",
+   "oracle": "Waspada",
+   "app": "Waspada",
+   "pass": true
+  },
+  {
+   "pond": "Catfish",
+   "name": "S13 CV DO > 0,16, lainnya optimal",
+   "expected": "Waspada",
+   "oracle": "Waspada",
+   "app": "Waspada",
+   "pass": true
+  },
+  {
+   "pond": "Catfish",
+   "name": "S14 Kritis dan Waspada bersamaan -> Kritis",
+   "expected": "Kritis",
+   "oracle": "Kritis",
+   "app": "Kritis",
+   "pass": true
+  },
+  {
+   "pond": "Catfish",
+   "name": "S15 batas: DO aktual = Ops tepat",
+   "expected": "Waspada",
+   "oracle": "Waspada",
+   "app": "Waspada",
+   "pass": true
+  },
+  {
+   "pond": "Catfish",
+   "name": "S16 batas: DO aktual & prediksi = Opt tepat",
+   "expected": "Aman",
+   "oracle": "Aman",
+   "app": "Aman",
+   "pass": true
+  },
+  {
+   "pond": "Catfish",
+   "name": "S17 batas: suhu = batas atas Opt tepat",
+   "expected": "Aman",
+   "oracle": "Aman",
+   "app": "Aman",
+   "pass": true
+  },
+  {
+   "pond": "Catfish",
+   "name": "S18 prediksi tidak tersedia, DO aktual optimal",
+   "expected": "Aman",
+   "oracle": "Aman",
+   "app": "Aman",
+   "pass": true
+  },
+  {
+   "pond": "Gourami",
+   "name": "S01 semua optimal, prediksi >= Opt",
+   "expected": "Aman",
+   "oracle": "Aman",
+   "app": "Aman",
+   "pass": true
+  },
+  {
+   "pond": "Gourami",
+   "name": "S02 prediksi minimum di antara Ops dan Opt",
+   "expected": "Waspada",
+   "oracle": "Waspada",
+   "app": "Waspada",
+   "pass": true
+  },
+  {
+   "pond": "Gourami",
+   "name": "S03 DO aktual di antara Ops dan Opt",
+   "expected": "Waspada",
+   "oracle": "Waspada",
+   "app": "Waspada",
+   "pass": true
+  },
+  {
+   "pond": "Gourami",
+   "name": "S04 prediksi minimum < Ops",
+   "expected": "Kritis",
+   "oracle": "Kritis",
+   "app": "Kritis",
+   "pass": true
+  },
+  {
+   "pond": "Gourami",
+   "name": "S05 DO aktual < Ops",
+   "expected": "Kritis",
+   "oracle": "Kritis",
+   "app": "Kritis",
+   "pass": true
+  },
+  {
+   "pond": "Gourami",
+   "name": "S06 riwayat excursion DO, kondisi kini optimal",
+   "expected": "Waspada",
+   "oracle": "Waspada",
+   "app": "Waspada",
+   "pass": true
+  },
+  {
+   "pond": "Gourami",
+   "name": "S07 suhu kini Acceptable (skor 2)",
+   "expected": "Waspada",
+   "oracle": "Waspada",
+   "app": "Waspada",
+   "pass": true
+  },
+  {
+   "pond": "Gourami",
+   "name": "S08 suhu kini Unsuitable (skor 1)",
+   "expected": "Kritis",
+   "oracle": "Kritis",
+   "app": "Kritis",
+   "pass": true
+  },
+  {
+   "pond": "Gourami",
+   "name": "S09 pH kini Acceptable (skor 2)",
+   "expected": "Waspada",
+   "oracle": "Waspada",
+   "app": "Waspada",
+   "pass": true
+  },
+  {
+   "pond": "Gourami",
+   "name": "S10 pH kini Unsuitable (skor 1)",
+   "expected": "Kritis",
+   "oracle": "Kritis",
+   "app": "Kritis",
+   "pass": true
+  },
+  {
+   "pond": "Gourami",
+   "name": "S11 rata-rata skor suhu < 2,85, kini optimal",
+   "expected": "Waspada",
+   "oracle": "Waspada",
+   "app": "Waspada",
+   "pass": true
+  },
+  {
+   "pond": "Gourami",
+   "name": "S12 rata-rata skor pH < 2,85, kini optimal",
+   "expected": "Waspada",
+   "oracle": "Waspada",
+   "app": "Waspada",
+   "pass": true
+  },
+  {
+   "pond": "Gourami",
+   "name": "S13 CV DO > 0,16, lainnya optimal",
+   "expected": "Waspada",
+   "oracle": "Waspada",
+   "app": "Waspada",
+   "pass": true
+  },
+  {
+   "pond": "Gourami",
+   "name": "S14 Kritis dan Waspada bersamaan -> Kritis",
+   "expected": "Kritis",
+   "oracle": "Kritis",
+   "app": "Kritis",
+   "pass": true
+  },
+  {
+   "pond": "Gourami",
+   "name": "S15 batas: DO aktual = Ops tepat",
+   "expected": "Waspada",
+   "oracle": "Waspada",
+   "app": "Waspada",
+   "pass": true
+  },
+  {
+   "pond": "Gourami",
+   "name": "S16 batas: DO aktual & prediksi = Opt tepat",
+   "expected": "Aman",
+   "oracle": "Aman",
+   "app": "Aman",
+   "pass": true
+  },
+  {
+   "pond": "Gourami",
+   "name": "S17 batas: suhu = batas atas Opt tepat",
+   "expected": "Aman",
+   "oracle": "Aman",
+   "app": "Aman",
+   "pass": true
+  },
+  {
+   "pond": "Gourami",
+   "name": "S18 prediksi tidak tersedia, DO aktual optimal",
+   "expected": "Aman",
+   "oracle": "Aman",
+   "app": "Aman",
+   "pass": true
+  },
+  {
+   "pond": "Nilem",
+   "name": "S01 semua optimal, prediksi >= Opt",
+   "expected": "Aman",
+   "oracle": "Aman",
+   "app": "Aman",
+   "pass": true
+  },
+  {
+   "pond": "Nilem",
+   "name": "S02 prediksi minimum di antara Ops dan Opt",
+   "expected": "Waspada",
+   "oracle": "Waspada",
+   "app": "Waspada",
+   "pass": true
+  },
+  {
+   "pond": "Nilem",
+   "name": "S03 DO aktual di antara Ops dan Opt",
+   "expected": "Waspada",
+   "oracle": "Waspada",
+   "app": "Waspada",
+   "pass": true
+  },
+  {
+   "pond": "Nilem",
+   "name": "S04 prediksi minimum < Ops",
+   "expected": "Kritis",
+   "oracle": "Kritis",
+   "app": "Kritis",
+   "pass": true
+  },
+  {
+   "pond": "Nilem",
+   "name": "S05 DO aktual < Ops",
+   "expected": "Kritis",
+   "oracle": "Kritis",
+   "app": "Kritis",
+   "pass": true
+  },
+  {
+   "pond": "Nilem",
+   "name": "S06 riwayat excursion DO, kondisi kini optimal",
+   "expected": "Waspada",
+   "oracle": "Waspada",
+   "app": "Waspada",
+   "pass": true
+  },
+  {
+   "pond": "Nilem",
+   "name": "S07 suhu kini Acceptable (skor 2)",
+   "expected": "Waspada",
+   "oracle": "Waspada",
+   "app": "Waspada",
+   "pass": true
+  },
+  {
+   "pond": "Nilem",
+   "name": "S08 suhu kini Unsuitable (skor 1)",
+   "expected": "Kritis",
+   "oracle": "Kritis",
+   "app": "Kritis",
+   "pass": true
+  },
+  {
+   "pond": "Nilem",
+   "name": "S09 pH kini Acceptable (skor 2)",
+   "expected": "Waspada",
+   "oracle": "Waspada",
+   "app": "Waspada",
+   "pass": true
+  },
+  {
+   "pond": "Nilem",
+   "name": "S10 pH kini Unsuitable (skor 1)",
+   "expected": "Kritis",
+   "oracle": "Kritis",
+   "app": "Kritis",
+   "pass": true
+  },
+  {
+   "pond": "Nilem",
+   "name": "S11 rata-rata skor suhu < 2,85, kini optimal",
+   "expected": "Waspada",
+   "oracle": "Waspada",
+   "app": "Waspada",
+   "pass": true
+  },
+  {
+   "pond": "Nilem",
+   "name": "S12 rata-rata skor pH < 2,85, kini optimal",
+   "expected": "Waspada",
+   "oracle": "Waspada",
+   "app": "Waspada",
+   "pass": true
+  },
+  {
+   "pond": "Nilem",
+   "name": "S13 CV DO > 0,16, lainnya optimal",
+   "expected": "Waspada",
+   "oracle": "Waspada",
+   "app": "Waspada",
+   "pass": true
+  },
+  {
+   "pond": "Nilem",
+   "name": "S14 Kritis dan Waspada bersamaan -> Kritis",
+   "expected": "Kritis",
+   "oracle": "Kritis",
+   "app": "Kritis",
+   "pass": true
+  },
+  {
+   "pond": "Nilem",
+   "name": "S15 batas: DO aktual = Ops tepat",
+   "expected": "Waspada",
+   "oracle": "Waspada",
+   "app": "Waspada",
+   "pass": true
+  },
+  {
+   "pond": "Nilem",
+   "name": "S16 batas: DO aktual & prediksi = Opt tepat",
+   "expected": "Aman",
+   "oracle": "Aman",
+   "app": "Aman",
+   "pass": true
+  },
+  {
+   "pond": "Nilem",
+   "name": "S17 batas: suhu = batas atas Opt tepat",
+   "expected": "Aman",
+   "oracle": "Aman",
+   "app": "Aman",
+   "pass": true
+  },
+  {
+   "pond": "Nilem",
+   "name": "S18 prediksi tidak tersedia, DO aktual optimal",
+   "expected": "Aman",
+   "oracle": "Aman",
+   "app": "Aman",
+   "pass": true
+  },
+  {
+   "pond": "Tilapia",
+   "name": "S01 semua optimal, prediksi >= Opt",
+   "expected": "Aman",
+   "oracle": "Aman",
+   "app": "Aman",
+   "pass": true
+  },
+  {
+   "pond": "Tilapia",
+   "name": "S02 prediksi minimum di antara Ops dan Opt",
+   "expected": "Waspada",
+   "oracle": "Waspada",
+   "app": "Waspada",
+   "pass": true
+  },
+  {
+   "pond": "Tilapia",
+   "name": "S03 DO aktual di antara Ops dan Opt",
+   "expected": "Waspada",
+   "oracle": "Waspada",
+   "app": "Waspada",
+   "pass": true
+  },
+  {
+   "pond": "Tilapia",
+   "name": "S04 prediksi minimum < Ops",
+   "expected": "Kritis",
+   "oracle": "Kritis",
+   "app": "Kritis",
+   "pass": true
+  },
+  {
+   "pond": "Tilapia",
+   "name": "S05 DO aktual < Ops",
+   "expected": "Kritis",
+   "oracle": "Kritis",
+   "app": "Kritis",
+   "pass": true
+  },
+  {
+   "pond": "Tilapia",
+   "name": "S06 riwayat excursion DO, kondisi kini optimal",
+   "expected": "Waspada",
+   "oracle": "Waspada",
+   "app": "Waspada",
+   "pass": true
+  },
+  {
+   "pond": "Tilapia",
+   "name": "S07 suhu kini Acceptable (skor 2)",
+   "expected": "Waspada",
+   "oracle": "Waspada",
+   "app": "Waspada",
+   "pass": true
+  },
+  {
+   "pond": "Tilapia",
+   "name": "S08 suhu kini Unsuitable (skor 1)",
+   "expected": "Kritis",
+   "oracle": "Kritis",
+   "app": "Kritis",
+   "pass": true
+  },
+  {
+   "pond": "Tilapia",
+   "name": "S09 pH kini Acceptable (skor 2)",
+   "expected": "Waspada",
+   "oracle": "Waspada",
+   "app": "Waspada",
+   "pass": true
+  },
+  {
+   "pond": "Tilapia",
+   "name": "S10 pH kini Unsuitable (skor 1)",
+   "expected": "Kritis",
+   "oracle": "Kritis",
+   "app": "Kritis",
+   "pass": true
+  },
+  {
+   "pond": "Tilapia",
+   "name": "S11 rata-rata skor suhu < 2,85, kini optimal",
+   "expected": "Waspada",
+   "oracle": "Waspada",
+   "app": "Waspada",
+   "pass": true
+  },
+  {
+   "pond": "Tilapia",
+   "name": "S12 rata-rata skor pH < 2,85, kini optimal",
+   "expected": "Waspada",
+   "oracle": "Waspada",
+   "app": "Waspada",
+   "pass": true
+  },
+  {
+   "pond": "Tilapia",
+   "name": "S13 CV DO > 0,16, lainnya optimal",
+   "expected": "Waspada",
+   "oracle": "Waspada",
+   "app": "Waspada",
+   "pass": true
+  },
+  {
+   "pond": "Tilapia",
+   "name": "S14 Kritis dan Waspada bersamaan -> Kritis",
+   "expected": "Kritis",
+   "oracle": "Kritis",
+   "app": "Kritis",
+   "pass": true
+  },
+  {
+   "pond": "Tilapia",
+   "name": "S15 batas: DO aktual = Ops tepat",
+   "expected": "Waspada",
+   "oracle": "Waspada",
+   "app": "Waspada",
+   "pass": true
+  },
+  {
+   "pond": "Tilapia",
+   "name": "S16 batas: DO aktual & prediksi = Opt tepat",
+   "expected": "Aman",
+   "oracle": "Aman",
+   "app": "Aman",
+   "pass": true
+  },
+  {
+   "pond": "Tilapia",
+   "name": "S17 batas: suhu = batas atas Opt tepat",
+   "expected": "Aman",
+   "oracle": "Aman",
+   "app": "Aman",
+   "pass": true
+  },
+  {
+   "pond": "Tilapia",
+   "name": "S18 prediksi tidak tersedia, DO aktual optimal",
+   "expected": "Aman",
+   "oracle": "Aman",
+   "app": "Aman",
+   "pass": true
+  }
+ ],
+ "fuzz": {
+  "Catfish": {
+   "cases": 5000,
+   "agree": 5000,
+   "disagree": 0,
+   "appStatusDistribution": {
+    "Aman": 646,
+    "Waspada": 1908,
+    "Kritis": 2446
+   },
+   "examples": []
+  },
+  "Gourami": {
+   "cases": 5000,
+   "agree": 5000,
+   "disagree": 0,
+   "appStatusDistribution": {
+    "Aman": 650,
+    "Waspada": 2000,
+    "Kritis": 2350
+   },
+   "examples": []
+  },
+  "Nilem": {
+   "cases": 5000,
+   "agree": 5000,
+   "disagree": 0,
+   "appStatusDistribution": {
+    "Aman": 650,
+    "Waspada": 1850,
+    "Kritis": 2500
+   },
+   "examples": []
+  },
+  "Tilapia": {
+   "cases": 5000,
+   "agree": 5000,
+   "disagree": 0,
+   "appStatusDistribution": {
+    "Aman": 650,
+    "Waspada": 2000,
+    "Kritis": 2350
+   },
+   "examples": []
+  }
+ },
+ "cardLabel": {
+  "score3": "Optimal",
+  "score2": "Dapat diterima",
+  "score1": "Tidak sesuai"
+ }
+}
